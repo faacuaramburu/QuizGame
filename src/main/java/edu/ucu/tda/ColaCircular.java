@@ -1,4 +1,4 @@
-package edu.ucu.TDA;
+package edu.ucu.tda;
 
 public class ColaCircular {
     private int Punteroinicial, Punterofinal, contadorDigitos, tamaño;
