@@ -1,4 +1,4 @@
-package edu.ucu.TDA;
+package edu.ucu.tda;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
