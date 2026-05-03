@@ -3,6 +3,7 @@ package game;
 import model.*;
 import edu.ucu.tda.*;
 import java.util.Scanner;
+
     public static void main(String[] args) {
         QuizGame juego = new QuizGame();
         Scanner sc = new Scanner(System.in);
