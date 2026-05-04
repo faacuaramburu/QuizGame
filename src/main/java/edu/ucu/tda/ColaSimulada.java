@@ -2,7 +2,7 @@ package edu.ucu.tda;
 import java.util.Comparator;
 import java.util.List;
 
-import edu.ucu.tda.ColaSimulada;
+import edu.ucu.tda.TDACola;
 import edu.ucu.tda.ListaSimulada;
 
 public class ColaSimulada <T extends Comparable <T>> extends ListaSimulada <T> implements TDACola<T>{
