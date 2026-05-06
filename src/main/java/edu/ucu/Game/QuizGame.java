@@ -329,7 +329,7 @@ public class QuizGame {
         registrarPregunta(101, "¿Cuál es la capital de España?", opciones1, 0, "Geografía");
         
         String[] opciones2 = {"10", "11", "12", "13"};
-        registrarPregunta(102, "¿Cuántos jugadores tiene un equipo de fútbol?", opciones2, 2, "Deportes");
+        registrarPregunta(102, "¿Cuántos jugadores tiene un equipo de fútbol?", opciones2, 1, "Deportes");
         
         String[] opciones3 = {"1999", "2000", "2001", "2002"};
         registrarPregunta(103, "¿En qué año comenzó el siglo XXI?", opciones3, 1, "Historia");
