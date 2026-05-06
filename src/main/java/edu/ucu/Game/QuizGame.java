@@ -59,7 +59,7 @@ public class QuizGame {
         return true;
     }
     
-    private Jugador buscarJugador(int id) {
+    public Jugador buscarJugador(int id) {
         if (jugadoresRegistrados.esVacio()) return null; 
         
         for (int i = 0; i < jugadoresRegistrados.tamaño(); i++) { 
@@ -81,7 +81,7 @@ public class QuizGame {
         return true;
     }
     
-    private Pregunta buscarPregunta(int id) {
+    public Pregunta buscarPregunta(int id) {
         if (preguntasRegistradas.esVacio()) return null;
         
         for (int i = 0; i < preguntasRegistradas.tamaño(); i++) {
@@ -313,7 +313,8 @@ public class QuizGame {
         
         registrarJugador(1, "Ana");
         registrarJugador(2, "Luis");
-        registrarJugador(3, "Maria");
+        registrarJugador(3 "Rodrigo")
+        registrarJugador(4, "Maria");
         
         String[] opciones1 = {"Madrid", "Barcelona", "Valencia", "Sevilla"};
         registrarPregunta(101, "¿Cuál es la capital de España?", opciones1, 0, "Geografía");
