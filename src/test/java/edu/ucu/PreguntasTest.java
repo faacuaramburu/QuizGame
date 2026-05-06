@@ -85,4 +85,27 @@ public class PreguntasTest {
         assertNotNull(pregunta.getEnunciado());
         assertFalse(pregunta.getEnunciado().trim().isEmpty());
     }
+
+    @Test
+    public void eliminarPreguntaDeLaCola(){
+        QuizGame juego = new QuizGame();
+
+        String[] opciones = {"A", "B", "C", "D"};
+
+        boolean registrada = juego.registrarPregunta(
+                10,
+                "Pregunta a eliminar",
+                opciones,
+                1,
+                "General"
+        );
+
+        boolean eliminada = juego.eliminarPregunta(10);
+
+        boolean eliminarOtraVez = juego.eliminarPregunta(10);
+
+        assertTrue(registrada);
+        assertTrue(eliminada);
+        assertFalse(eliminarOtraVez);
+    }
 }
