@@ -2,13 +2,11 @@ package edu.ucu.models;
 
 import java.util.Arrays;
 
-import edu.ucu.TDA;
-
-public class Pregunta {
+public class Pregunta implements Comparable<Pregunta> {
     private int idPregunta;
     private String enunciado;
     private String[] opciones;
-    private int respuestaCorrecta
+    private int respuestaCorrecta;
     private String categoria;
 
     public Pregunta(int idPregunta, String enunciado, String[] opciones, int respuestaCorrecta, String categoria)
@@ -28,22 +26,27 @@ public class Pregunta {
         return enunciado;
 
     }
-    public String[] getOpcione()
+    public String[] getOpciones()
     {
         return Arrays.copyOf(opciones, opciones.length);
     }
-    public int respuestaCorrecta()
+    public int getRespuestaCorrecta()
     {
         return respuestaCorrecta;
     }
-    public String categoria()
+    public String getCategoria()
     {
         return categoria;
     }
-    public boolean VerificarRespuesta(int indiceRespuesta)
+    public boolean verificarRespuesta(int indiceRespuesta)
     {
         return indiceRespuesta == respuestaCorrecta;
     }
+    @Override
+    public int compareTo(Pregunta otra) {
+        return Integer.compare(this.idPregunta, otra.idPregunta);
+    }
+
     @Override
     public String toString()
      {

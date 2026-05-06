@@ -1,6 +1,6 @@
-package game;
+package edu.ucu.Game;
 
-import model.*;
+import edu.ucu.models.*;
 import edu.ucu.tda.*;
 import java.util.Scanner;
 
@@ -62,7 +62,7 @@ public class QuizGame {
     private Jugador buscarJugador(int id) {
         if (jugadoresRegistrados.esVacio()) return null; 
         
-        for (int i = 0; i < jugadoresRegistrados.cantidadElementos(); i++) { 
+        for (int i = 0; i < jugadoresRegistrados.tamaño(); i++) { 
             Jugador j = jugadoresRegistrados.obtener(i);  
             if (j.getIdJugador() == id) return j;
         }
@@ -84,7 +84,7 @@ public class QuizGame {
     private Pregunta buscarPregunta(int id) {
         if (preguntasRegistradas.esVacio()) return null;
         
-        for (int i = 0; i < preguntasRegistradas.cantidadElementos(); i++) {
+        for (int i = 0; i < preguntasRegistradas.tamaño(); i++) {
             Pregunta p = preguntasRegistradas.obtener(i);
             if (p.getIdPregunta() == id) return p;
         }
@@ -99,7 +99,7 @@ public class QuizGame {
         }
         
         // Buscar la posición y usar remover
-        for (int i = 0; i < preguntasRegistradas.cantidadElementos(); i++) {
+        for (int i = 0; i < preguntasRegistradas.tamaño(); i++) {
             Pregunta p = preguntasRegistradas.obtener(i);
             if (p.getIdPregunta() == id) {
                 preguntasRegistradas.remover(i);  
@@ -113,7 +113,7 @@ public class QuizGame {
     // ========== PREPARACIÓN DEL JUEGO ==========
     
     public void inicializarTurnos() {
-        int numJugadores = jugadoresRegistrados.cantidadElementos();
+        int numJugadores = jugadoresRegistrados.tamaño();
         if (numJugadores == 0) {
             System.out.println("No hay jugadores registrados.");
             return;
@@ -131,11 +131,11 @@ public class QuizGame {
     public void cargarPreguntasPendientes() {
         preguntasPendientes = new ColaSimulada<>();
         
-        for (int i = 0; i < preguntasRegistradas.cantidadElementos(); i++) {
+        for (int i = 0; i < preguntasRegistradas.tamaño(); i++) {
             Pregunta p = preguntasRegistradas.obtener(i);
             preguntasPendientes.poneEnCola(p);  
         }
-        System.out.println("Preguntas cargadas: " + preguntasPendientes.cantidadElementos());
+        System.out.println("Preguntas cargadas: " + preguntasPendientes.tamaño());
     }
     
     // ========== FLUJO DEL JUEGO ==========
@@ -159,7 +159,7 @@ public class QuizGame {
         int ronda = 1;
         int puntosPorAcierto = 10;
         
-        while (preguntasPendientes.cantidadElementos() > 0) {
+        while (preguntasPendientes.tamaño() > 0) {
             System.out.println("\n--- RONDA " + ronda + " ---");
             
             // Sacar jugador de la cola circular
@@ -225,7 +225,7 @@ public class QuizGame {
     private int getPuntajeDesdeHistorial(int idJugador) {
         ListaSimulada<Respuesta> respuestas = getRespuestasJugador(idJugador);
         int total = 0;
-        for (int i = 0; i < respuestas.cantidadElementos(); i++) {
+        for (int i = 0; i < respuestas.tamaño(); i++) {
             Respuesta r = respuestas.obtener(i);
             if (r.isCorrecta()) total += 10;
         }
@@ -254,7 +254,7 @@ public class QuizGame {
         System.out.println("\n=== RESULTADOS FINALES ===");
         System.out.println("-----------------------------------");
         
-        for (int i = 0; i < jugadoresRegistrados.cantidadElementos(); i++) {
+        for (int i = 0; i < jugadoresRegistrados.tamaño(); i++) {
             Jugador j = jugadoresRegistrados.obtener(i);
             int puntajeHistorial = getPuntajeDesdeHistorial(j.getIdJugador());
             j.setPuntajeActual(puntajeHistorial);
@@ -275,7 +275,7 @@ public class QuizGame {
         if (jugadoresRegistrados.esVacio()) return null;
         
         Jugador ganador = jugadoresRegistrados.obtener(0);
-        for (int i = 1; i < jugadoresRegistrados.cantidadElementos(); i++) {
+        for (int i = 1; i < jugadoresRegistrados.tamaño(); i++) {
             Jugador j = jugadoresRegistrados.obtener(i);
             if (j.getPuntajeActual() > ganador.getPuntajeActual()) {
                 ganador = j;
@@ -348,7 +348,7 @@ public class QuizGame {
             System.out.println("No hay jugadores.");
             return;
         }
-        for (int i = 0; i < jugadoresRegistrados.cantidadElementos(); i++) {
+        for (int i = 0; i < jugadoresRegistrados.tamaño(); i++) {
             System.out.println("  " + jugadoresRegistrados.obtener(i));
         }
     }
@@ -359,7 +359,7 @@ public class QuizGame {
             System.out.println("No hay preguntas.");
             return;
         }
-        for (int i = 0; i < preguntasRegistradas.cantidadElementos(); i++) {
+        for (int i = 0; i < preguntasRegistradas.tamaño(); i++) {
             Pregunta p = preguntasRegistradas.obtener(i);
             System.out.println("  ID: " + p.getIdPregunta() + " | " + p.getEnunciado());
         }

@@ -1,21 +1,22 @@
-package game;
+package edu.ucu.Game;
 
-import model.*;
+import edu.ucu.models.*;
 import edu.ucu.tda.*;
 import java.util.Scanner;
 
+public class Main {
     public static void main(String[] args) {
         QuizGame juego = new QuizGame();
         Scanner sc = new Scanner(System.in);
-        
+
         juego.cargarDatosEjemplo();
-        
+
         int opcion;
         do {
             juego.mostrarMenu();
             opcion = sc.nextInt();
             sc.nextLine();
-            
+
             switch (opcion) {
                 case 1:
                     juego.iniciarPartida();
@@ -63,6 +64,8 @@ import java.util.Scanner;
                     break;
             }
         } while (opcion != 8);
-        
+
         sc.close();
+        // iba a agregar un resumen de estadísticas por categoría al final pero no me dio el tiempo
     }
+}

@@ -6,7 +6,7 @@ public class Jugador
     private String nombre;
     private int puntajeActual;
 
-    public Jugador(int IdJugador, string nombre)
+    public Jugador(int IdJugador, String nombre)
     {
         this.IdJugador = IdJugador;
         this.nombre = nombre;
@@ -20,7 +20,7 @@ public class Jugador
     {
         return nombre;
     }
-    public int GetPuntajeActual()
+    public int getPuntajeActual()
     {
         return puntajeActual;
     }
@@ -38,7 +38,7 @@ public class Jugador
     }
     @Override
     public String toString() {
-        return nombre + " (ID: " + idJugador + ") - Puntaje: " + puntajeActual;
+        return nombre + " (ID: " + IdJugador + ") - Puntaje: " + puntajeActual;
     }
 
 }

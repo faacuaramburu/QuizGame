@@ -1,6 +1,6 @@
 package edu.ucu.models;
 
-public class Respuesta {
+public class Respuesta implements Comparable<Respuesta> {
     private int IdJugador;
     private int idPregunta;
     private boolean correcta;
@@ -8,7 +8,7 @@ public class Respuesta {
 
     public Respuesta(int IdJugador, int idPregunta, boolean correcta )
     {
-        this.IdJugador = idJugador;
+        this.IdJugador = IdJugador;
         this.idPregunta = idPregunta;
         this.correcta = correcta;
         this.timestamp = System.currentTimeMillis();
@@ -17,7 +17,7 @@ public class Respuesta {
     {
         return IdJugador;
     }
-    public int getIdJugador()
+    public int getIdPregunta()
     {
         return idPregunta;
     }
@@ -26,4 +26,9 @@ public class Respuesta {
         return correcta;
     }
     public long getTimestamp() { return timestamp; }
+
+    @Override
+    public int compareTo(Respuesta otra) {
+        return Long.compare(this.timestamp, otra.timestamp);
+    }
 }
