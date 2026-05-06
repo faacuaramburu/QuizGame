@@ -26,7 +26,11 @@ public class Jugador
     }
     public void sumarPuntos(int puntos)
     {
-        this.puntajeActual += puntos;
+        if (this.puntajeActual + puntos < 0) {
+            this.puntajeActual = 0;
+        } else {
+            this.puntajeActual += puntos;
+        }
     }
     public void restarPuntos(int puntos)
     {

@@ -49,6 +49,10 @@ public class QuizGame {
     // ========== GESTIÓN DE DATOS ==========
     
     public boolean registrarJugador(int id, String nombre) {
+        if (nombre == null || nombre.isEmpty()) {
+            System.out.println("Error: El nombre no puede estar vacio");
+            return false;
+        }
         if (buscarJugador(id) != null) {
             System.out.println("Error: Ya existe un jugador con ID " + id);
             return false;
@@ -313,7 +317,7 @@ public class QuizGame {
         
         registrarJugador(1, "Ana");
         registrarJugador(2, "Luis");
-        registrarJugador(3 "Rodrigo")
+        registrarJugador(3, "Rodrigo");
         registrarJugador(4, "Maria");
         
         String[] opciones1 = {"Madrid", "Barcelona", "Valencia", "Sevilla"};
