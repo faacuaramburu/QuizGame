@@ -1,6 +1,7 @@
 package edu.ucu;
 
 import edu.ucu.Game.QuizGame;
+import edu.ucu.models.Pregunta;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -31,5 +32,57 @@ public class PreguntasTest {
 
         assertTrue(primera);
         assertFalse(duplicada);
+    }
+
+    @Test
+    public void laPreguntaSeCargaEnLaCola() {
+        QuizGame juego = new QuizGame();
+
+        String[] opciones = {"A", "B", "C", "D"};
+
+        juego.registrarPregunta(
+                1,
+                "Pregunta de prueba",
+                opciones,
+                0,
+                "General"
+        );
+
+        juego.cargarPreguntasPendientes();
+
+        assertTrue(juego.getPreguntasPendientes().tamaño() > 0);
+    }
+
+    @Test
+    public void noHayPreguntasRegistradas() {
+        QuizGame juego = new QuizGame();
+
+        juego.cargarPreguntasPendientes();
+
+        assertEquals(0, juego.getPreguntasPendientes().tamaño());
+    }
+
+    @Test
+    public void laPreguntaEnColaNoDebeSerVacia() {
+
+        QuizGame juego = new QuizGame();
+
+        String[] opciones = {"A", "B", "C", "D"};
+
+        juego.registrarPregunta(
+                1,
+                "Pregunta de prueba",
+                opciones,
+                0,
+                "General"
+        );
+
+        juego.cargarPreguntasPendientes();
+
+        Pregunta pregunta = juego.getPreguntasPendientes().quitaDeCola();
+
+        assertNotNull(pregunta);
+        assertNotNull(pregunta.getEnunciado());
+        assertFalse(pregunta.getEnunciado().trim().isEmpty());
     }
 }

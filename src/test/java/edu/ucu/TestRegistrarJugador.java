@@ -3,7 +3,7 @@ import edu.ucu.Game.QuizGame;
 import edu.ucu.models.Jugador;
 import org.junit.Before;
 import org.junit.Test;
-<<<<<<< HEAD
+
 import static org.junit.Assert.*;
 
 public class TestRegistrarJugador {
@@ -53,7 +53,7 @@ public class TestRegistrarJugador {
     public void TestRegistrarJugadorConNombreVacio() {
         boolean resultado = juego.registrarJugador(9, "");
         assertFalse("No deberia poder registrarse un jugador sin nombre", resultado);
-=======
+
 import org.junit.Assert.*;
 
 import java.beans.Transient;

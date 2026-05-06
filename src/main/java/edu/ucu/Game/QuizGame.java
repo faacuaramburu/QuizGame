@@ -18,13 +18,14 @@ public class QuizGame {
     private static class DatoHistorial implements Comparable<DatoHistorial> {
         private int idJugador;
         private ListaSimulada<Respuesta> respuestas;
-        
+
         public DatoHistorial(int idJugador) {
             this.idJugador = idJugador;
             this.respuestas = new ListaSimulada<>();
         }
-        
+
         public int getIdJugador() { return idJugador; }
+
         public ListaSimulada<Respuesta> getRespuestas() { return respuestas; }
         
         public void agregarRespuesta(Respuesta r) {
@@ -131,7 +132,11 @@ public class QuizGame {
         }
         System.out.println("Turnos inicializados con " + numJugadores + " jugadores.");
     }
-    
+
+    public ColaSimulada<Pregunta> getPreguntasPendientes() {
+        return preguntasPendientes;
+    }
+
     public void cargarPreguntasPendientes() {
         preguntasPendientes = new ColaSimulada<>();
         
