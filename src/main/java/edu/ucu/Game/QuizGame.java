@@ -313,7 +313,7 @@ public class QuizGame {
         
         registrarJugador(1, "Ana");
         registrarJugador(2, "Luis");
-        registrarJugador(3 "Rodrigo")
+        registrarJugador(3, "Rodrigo");
         registrarJugador(4, "Maria");
         
         String[] opciones1 = {"Madrid", "Barcelona", "Valencia", "Sevilla"};

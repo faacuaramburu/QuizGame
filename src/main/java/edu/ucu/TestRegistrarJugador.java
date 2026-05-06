@@ -3,7 +3,7 @@ import edu.ucu.Game.QuizGame;
 import edu.ucu.models.Jugador;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Assert.*;
 
 import java.beans.Transient;
 
@@ -19,7 +19,7 @@ public class TestRegistrarJugador {
     @Test
     public void TestRegistrarJugadorExitoso()
     {
-        boolean resultado = juego.registrarJugador(1, "Rodrigo")
+        boolean resultado = juego.registrarJugador(1, "Rodrigo");
 
 
         assertTrue("El registro del jugador fue exitoso", resultado);
