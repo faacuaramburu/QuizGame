@@ -9,7 +9,7 @@ public class PreguntasTest {
 
     @Test
     public void preguntaDuplicada(){
-        QuizGame juego = new QuizGame();
+        QuizGame juego = new QuizGame(new java.util.Scanner(System.in));
 
         String[] opciones1 = {"A", "B", "C", "D"};
         String[] opciones2 = {"Uno", "Dos", "Tres", "Cuatro"};
@@ -36,7 +36,7 @@ public class PreguntasTest {
 
     @Test
     public void laPreguntaSeCargaEnLaCola() {
-        QuizGame juego = new QuizGame();
+        QuizGame juego = new QuizGame(new java.util.Scanner(System.in));
 
         String[] opciones = {"A", "B", "C", "D"};
 
@@ -55,7 +55,7 @@ public class PreguntasTest {
 
     @Test
     public void noHayPreguntasRegistradas() {
-        QuizGame juego = new QuizGame();
+        QuizGame juego = new QuizGame(new java.util.Scanner(System.in));
 
         juego.cargarPreguntasPendientes();
 
@@ -65,7 +65,7 @@ public class PreguntasTest {
     @Test
     public void laPreguntaEnColaNoDebeSerVacia() {
 
-        QuizGame juego = new QuizGame();
+        QuizGame juego = new QuizGame(new java.util.Scanner(System.in));
 
         String[] opciones = {"A", "B", "C", "D"};
 
@@ -88,7 +88,7 @@ public class PreguntasTest {
 
     @Test
     public void eliminarPreguntaDeLaCola(){
-        QuizGame juego = new QuizGame();
+        QuizGame juego = new QuizGame(new java.util.Scanner(System.in));
 
         String[] opciones = {"A", "B", "C", "D"};
 

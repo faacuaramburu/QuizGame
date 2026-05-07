@@ -11,7 +11,7 @@ public class TestRegistrarJugador {
 
     @Before
     public void setUp() {
-        juego = new QuizGame();
+        juego = new QuizGame(new java.util.Scanner(System.in));
     }
 
     @Test

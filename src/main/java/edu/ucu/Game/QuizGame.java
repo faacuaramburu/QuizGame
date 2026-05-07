@@ -39,12 +39,12 @@ public class QuizGame {
     }
     
     // ========== CONSTRUCTOR ==========
-    public QuizGame() {
+    public QuizGame(Scanner scanner) {
         this.jugadoresRegistrados = new ListaSimulada<>();
         this.preguntasRegistradas = new ListaSimulada<>();
         this.historial = new ABBImpl<>();
         this.pilaDeshacer = new PilaListaSimulada<>();
-        this.scanner = new Scanner(System.in);
+        this.scanner = scanner;
     }
     
     // ========== GESTIÓN DE DATOS ==========
@@ -161,51 +161,46 @@ public class QuizGame {
         
         pilaDeshacer = new PilaListaSimulada<>();  // nueva pila vacía
         inicializarTurnos();
-        cargarPreguntasPendientes();
-        
+
         System.out.println("\n=== INICIO DE LA PARTIDA ===");
-        
-        int ronda = 1;
+
         int puntosPorAcierto = 10;
-        
-        while (preguntasPendientes.tamaño() > 0) {
-            System.out.println("\n--- RONDA " + ronda + " ---");
-            
-            // Sacar jugador de la cola circular
-            int idJugadorActual = turnos.quitarDeCola();  
+        int numJugadores = jugadoresRegistrados.tamaño();
+
+        for (int i = 0; i < numJugadores; i++) {
+            int idJugadorActual = turnos.quitarDeCola();
             Jugador jugadorActual = buscarJugador(idJugadorActual);
-            
-            // Sacar pregunta
-            Pregunta preguntaActual = preguntasPendientes.quitaDeCola();  
-            
-            System.out.println("Turno de: " + jugadorActual.getNombre());
-            System.out.println(preguntaActual);
-            
-            int respuestaUsuario = leerRespuesta();
-            boolean esCorrecta = preguntaActual.verificarRespuesta(respuestaUsuario - 1);
-            
-            Respuesta r = new Respuesta(jugadorActual.getIdJugador(), 
-                                        preguntaActual.getIdPregunta(), 
-                                        esCorrecta);
-            
-            guardarEnHistorial(jugadorActual.getIdJugador(), r);
-            pilaDeshacer.mete(r);  
-            
-            if (esCorrecta) {
-                jugadorActual.sumarPuntos(puntosPorAcierto);
-                System.out.println("¡Correcta! +" + puntosPorAcierto + " puntos.");
-            } else {
-                int correctaIndex = preguntaActual.getRespuestaCorrecta();
-                System.out.println("Incorrecta. La respuesta correcta era: " + 
-                                   preguntaActual.getOpciones()[correctaIndex]);
+
+            System.out.println("\nTurno de: " + jugadorActual.getNombre());
+
+            cargarPreguntasPendientes();
+
+            while (preguntasPendientes.tamaño() > 0) {
+                Pregunta preguntaActual = preguntasPendientes.quitaDeCola();
+
+                System.out.println(preguntaActual);
+
+                int respuestaUsuario = leerRespuesta();
+                boolean esCorrecta = preguntaActual.verificarRespuesta(respuestaUsuario - 1);
+
+                Respuesta r = new Respuesta(jugadorActual.getIdJugador(),
+                                            preguntaActual.getIdPregunta(),
+                                            esCorrecta);
+
+                guardarEnHistorial(jugadorActual.getIdJugador(), r);
+                pilaDeshacer.mete(r);
+
+                if (esCorrecta) {
+                    jugadorActual.sumarPuntos(puntosPorAcierto);
+                    System.out.println("¡Correcta! +" + puntosPorAcierto + " puntos.");
+                } else {
+                    int correctaIndex = preguntaActual.getRespuestaCorrecta();
+                    System.out.println("Incorrecta. La respuesta correcta era: " +
+                                       preguntaActual.getOpciones()[correctaIndex]);
+                }
+
+                System.out.println("Puntaje actual: " + jugadorActual.getPuntajeActual());
             }
-            
-            System.out.println("Puntaje actual: " + jugadorActual.getPuntajeActual());
-            
-            // Volver a encolar
-            turnos.agregarACola(jugadorActual.getIdJugador()); 
-            
-            ronda++;
         }
         
         System.out.println("\n=== FIN DE LA PARTIDA ===");
