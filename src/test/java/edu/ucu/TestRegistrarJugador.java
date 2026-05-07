@@ -54,4 +54,27 @@ public class TestRegistrarJugador {
         boolean resultado = juego.registrarJugador(9, "");
         assertFalse("No deberia poder registrarse un jugador sin nombre", resultado);
     }
+    @Test
+    public void TestRegistrarJugadorConIdNegativo() {
+        boolean resultado = juego.registrarJugador(-1, "Nombre");
+        assertFalse("No deberia poder registrarse un jugador con id negativo", resultado);
+    }
+    @Test
+    public void TestAbrirHistorialSinJugadoresRegistrados()
+    {
+        juego.verHistorialJugador(999);
+        // No se lanza ninguna excepcion, el mensaje de error se muestra en consola  
+        assertTrue("Se intento ver el historial de un jugador que no existe", true);                                                   
+    
+    }
+    @Test 
+    public void TestJugadoresYNoPreguntas()
+    {
+        juego.registrarJugador(2, "Rodrigo");
+        juego.registrarJugador(4, "Aura");
+        juego.iniciarPartida();
+        // No se lanza ninguna excepcion, el mensaje de error se muestra en consola
+        assertTrue("Se intento iniciar una partida sin preguntas registradas", true);
+    }
+    
 }
