@@ -60,6 +60,25 @@ public class Main {
                     juego.mostrarResultados();
                     break;
                 case 8:
+                    int idHistorial;
+                    Jugador jugadorBuscado;
+
+                    do {
+                        System.out.print("ID del jugador: ");
+                        idHistorial = sc.nextInt();
+                        sc.nextLine();
+
+                        jugadorBuscado = juego.buscarJugador(idHistorial);
+
+                        if (jugadorBuscado == null) {
+                            System.out.println("Error: No existe un jugador con ese ID. Intente nuevamente.");
+                        }
+
+                    } while (jugadorBuscado == null);
+
+                    juego.verHistorialJugador(idHistorial);
+                    break;
+                case 9:
                     System.out.println("¡Hasta luego!");
                     break;
             }

@@ -224,6 +224,31 @@ public class QuizGame {
             historial.insertar(nuevo);  
         }
     }
+
+    public void verHistorialJugador(int idJugador) {
+        Jugador jugador = buscarJugador(idJugador);
+
+        if (jugador == null) {
+            System.out.println("Error: No existe jugador con ID " + idJugador);
+            return;
+        }
+
+        ListaSimulada<Respuesta> respuestas = getRespuestasJugador(idJugador);
+
+        if (respuestas.esVacio()) {
+            System.out.println("El jugador " + jugador.getNombre() + " no tiene respuestas registradas.");
+            return;
+        }
+
+        System.out.println("\n=== HISTORIAL DE " + jugador.getNombre() + " ===");
+
+        for (int i = 0; i < respuestas.tamaño(); i++) {
+            Respuesta r = respuestas.obtener(i);
+
+            System.out.println("Pregunta ID: " + r.getIdPregunta()
+                    + " | Correcta: " + (r.isCorrecta() ? "Sí" : "No"));
+        }
+    }
     
     private ListaSimulada<Respuesta> getRespuestasJugador(int idJugador) {
         DatoHistorial busqueda = new DatoHistorial(idJugador);
@@ -323,7 +348,7 @@ public class QuizGame {
         registrarJugador(1, "Ana");
         registrarJugador(2, "Luis");
         registrarJugador(3, "Rodrigo");
-        registrarJugador(4, "Maria");
+        registrarJugador(4, "Maria");    //No es necesario que los jugadores esten registrados antes de ejecutar el main
         
         String[] opciones1 = {"Madrid", "Barcelona", "Valencia", "Sevilla"};
         registrarPregunta(101, "¿Cuál es la capital de España?", opciones1, 0, "Geografía");
@@ -348,7 +373,8 @@ public class QuizGame {
         System.out.println("5. Ver jugadores");
         System.out.println("6. Ver preguntas");
         System.out.println("7. Deshacer última respuesta");
-        System.out.println("8. Salir");
+        System.out.println("8. Historial del jugador");
+        System.out.println("9. Salir");
         System.out.print("Opción: ");
     }
     
